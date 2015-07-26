@@ -2,13 +2,14 @@
 
 {% block content %}
 <h1>Shorty</h1>
-<h1>Create your own short URL's with us!</h1>
+<h2>Create your own short URL's with us!</h2>
 
 <form action="." method="post">
-  <input type="text" id="link" name="link" placeholder="http://" />
-  {% if form.link.errors %}{{ form.link.errors|join(' ') }}{% endif %}
+  <input type="text" id="full" name="full" placeholder="http://" value="{{ form.full.data }}" />
+  {% if form.full.errors %}{{ form.full.errors|join(' ') }}{% endif %}
   <button type="submit">Short</button>
-  <input type="text" id="short" name="short" placeholder="Custom short name" />
+  <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data }}" />
   {% if form.short.errors %}{{ form.short.errors|join(' ') }}{% endif %}
+  {{ form.csrf_token }}
 </form>
 {% endblock %}
