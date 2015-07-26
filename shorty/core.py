@@ -17,6 +17,6 @@ def index():
     form = LinkForm(request.form)
     if request.method == "POST" and form.validate():
         form.save()
-        redirect(url_for("core.index"))
+        redirect(url_for("core.index", short=form.short))
 
     return render_template("index.html", form=form)

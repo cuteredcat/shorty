@@ -7,7 +7,7 @@ from shorty import db
 
 class Users(db.Document):
     username = db.StringField(max_length=255, required=True, unique=True)
-    password = db.StringField(max_length=255, required=True)
+    password = db.StringField(max_length=64, required=True)
     email = db.EmailField(unique=True)
 
 class Links(db.Document):
@@ -15,4 +15,4 @@ class Links(db.Document):
     link = db.URLField(required=True)
     short = db.StringField(max_length=255, required=True, unique=True)
     comment = db.StringField()
-    tags = db.ListField(StringField(max_length=30))
+    tags = db.ListField(db.StringField(max_length=30))

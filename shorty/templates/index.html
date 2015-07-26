@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h1>Shorty</h1>
+<h1>Create your own short URL's with us!</h1>
+
+<form action="." method="post">
+  <input type="text" id="link" name="link" placeholder="http://" />
+  {% if form.link.errors %}{{ form.link.errors|join(' ') }}{% endif %}
+  <button type="submit">Short</button>
+  <input type="text" id="short" name="short" placeholder="Custom short name" />
+  {% if form.short.errors %}{{ form.short.errors|join(' ') }}{% endif %}
+</form>
+{% endblock %}
