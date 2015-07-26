@@ -5,15 +5,18 @@ from flask import Flask
 from flask.ext.mongoengine import MongoEngine
 
 from shorty import settings
-from shorty.core import core
-from shorty.admin import admin
 
 # init application
-app = Flask("shorty")
+app = Flask("shorty", instance_relative_config=True)
 app.config.from_object(settings)
+app.config.from_pyfile("shorty.conf", silent=True)
 
 # init db
 db = MongoEngine(app)
+
+# before import blueprints we need to init db
+from shorty.core import core
+from shorty.admin import admin
 
 # register blueprints
 app.register_blueprint(core)

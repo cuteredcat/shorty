@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# This is shorty config file
+# Do not change this file, use instance/shorty.conf instead
+
 HOST = "localhost"
 PORT = 5000
 
@@ -19,10 +22,3 @@ MONGODB_SETTINGS = {
     "db": "shorty",
     "host": "mongodb://localhost"
 }
-
-# import local settings if available
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass

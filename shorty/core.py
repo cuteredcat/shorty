@@ -4,18 +4,18 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from flask.ext.mongoengine.wtf import model_form
 
-from shorty.models import ShortLinks
+from shorty.models import Links
 
 # create blueprint
 core = Blueprint("core", __name__, template_folder="templates")
 
-# create form for short field
-ShortLinksForm = model_form(ShortLinks)
+# create form for Links document
+LinkForm = model_form(Links)
 
 @core.route("/")
 def index():
-    form = model_form(request.POST)
-    if request.mode == "POST" and form.validate():
+    form = LinkForm(request.form)
+    if request.method == "POST" and form.validate():
         form.save()
         redirect(url_for("core.index"))
 
