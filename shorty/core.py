@@ -10,6 +10,7 @@ from qrcode.image.svg import SvgImage
 from random import randint
 from short_url import encode_url
 
+from shorty import db
 from shorty.models import Links
 
 # create blueprint
@@ -18,9 +19,15 @@ core = Blueprint("core", __name__, template_folder="templates")
 # create form for Links document
 LinkForm = model_form(Links)
 
-@core.route("/")
+@core.route("/", methods=['POST', 'GET'])
 def index():
     form = LinkForm(request.form)
+
+    if request.method == "GET":
+        key, value = request.args.iteritems()
+        if key:
+            link = Links.objects.get_or_404(short=key)
+            return redirect(link.full)
 
     if request.method == "POST":
         if form.full.validate(form) and not form.short.data:
@@ -44,17 +51,12 @@ def info(short):
     link = Links.objects.get_or_404(short=short)
     return render_template("info.html", link=link)
 
-@core.route("/<string:short>/")
-def full(short):
-    link = Links.objects.get_or_404(short=short)
-    return redirect(link.full)
-
 @core.route("/qr/<string:short>/")
 def qr(short):
     stream = StringIO()
 
     qrmake(
-        url_for("core.full", short=short),
+        url_for("core.full", short=short, _external=True),
         image_factory=SvgImage
     ).save(stream)
 

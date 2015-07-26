@@ -5,8 +5,8 @@
 <h2>Create your own short URL's with us!</h2>
 
 <form action="." method="post">
-  <input type="text" id="full" name="full" value="{{ link.full }}" />
-  <input type="text" id="short" name="short" value="{{ link.short }}" />
+  <input type="text" id="full" name="full" value="{{ link.full|default("") }}" />
+  <input type="text" id="short" name="short" value="{{ url_for('core.index', _external=True) }}?{{ link.short }}" />
   <button type="submit">Copy</button>
 </form>
 
