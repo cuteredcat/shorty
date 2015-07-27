@@ -15,7 +15,24 @@ UserForm = model_form(Users)
 # create form for Links document
 LinkForm = model_form(Links)
 
-@admin.route("/admin/")
+@admin.route("/admin/", methods=["POST", "GET"])
 def index():
-    links = Links.objects.all()
+    form = LinkForm(request.form)
+
+    if request.method == "POST":
+        if form.full.validate(form) and not form.short.data:
+            # auto create new short name
+            # TODO: find better solution for custom url creation
+            form.short.data = encode_url(randint(1, 1000000000000))
+            while Links.objects.filter(short=form.short.data):
+                form.short.data = encode_url(randint(1, 1000000000000))
+
+        if form.validate():
+            try:
+                form.save()
+                return redirect(url_for("admin.index"))
+            except db.NotUniqueError:
+                form.short.errors.append('Duplicated short name.')
+
+    links = Links.objects.paginate(page=1, per_page=50)
     return render_template("admin/index.html", links=links)

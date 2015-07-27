@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h1>Shorty Administrator</h1>
+<h2>Add new short link:</h2>
+
+<form action="." method="post">
+  <input type="text" id="full" name="full" placeholder="http://" value="{{ form.full.data|default("", True) }}" />
+  {% if form.full.errors %}{{ form.full.errors|join(" ") }}{% endif %}
+  <button type="submit">Short</button>
+  <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data|default("", True) }}" />
+  {% if form.short.errors %}{{ form.short.errors|join(" ") }}{% endif %}
+  <input type="text" id="tags" name="tags" value="{{ form.tags.data|default("", True) }}" />
+  {% if form.tags.errors %}{{ form.tags.errors|join(" ") }}{% endif %}
+  <textarea type="text" id="comment" name="comment">{{ form.comment.data|default("", True) }}</textarea>
+  {% if form.tags.errors %}{{ form.tags.errors|join(" ") }}{% endif %}
+  {{ form.csrf_token }}
+</form>
+
+{% if links %}
+<section class="links">
+  {% for link in links %}
+  <div class="record">
+    <span class="short">{{ link.short }}</span>
+    <span class="created_at">{{ link.created_at }}</span>
+    <span class="tag">{{ link.tags|join("</span>, <span class="tag">") }}</span>
+    <span class="full">{{ link.full }}</span>
+    <span class="comment">{{ link.comment }}</span>
+  </div>
+  {% endfor %}
+  {% if links.has_next %}<button class="next_page">More</button>{% endif %}
+</section>
+{% endif %}
+{% endblock %}

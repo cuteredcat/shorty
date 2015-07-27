@@ -23,8 +23,8 @@ LinkForm = model_form(Links)
 def index():
     form = LinkForm(request.form)
 
-    if request.method == "GET":
-        key, value = request.args.iteritems()
+    if request.method == "GET" and request.args.items():
+        key, value = request.args.items()[0]
         if key:
             link = Links.objects.get_or_404(short=key)
             return redirect(link.full)
@@ -33,9 +33,9 @@ def index():
         if form.full.validate(form) and not form.short.data:
             # auto create new short name
             # TODO: find better solution for custom url creation
-            form.short.data = short_url(randint(1, 1000000000000))
+            form.short.data = encode_url(randint(1, 1000000000000))
             while Links.objects.filter(short=form.short.data):
-                form.short.data = short_url(randint(1, 1000000000000))
+                form.short.data = encode_url(randint(1, 1000000000000))
 
         if form.validate():
             try:
@@ -56,7 +56,7 @@ def qr(short):
     stream = StringIO()
 
     qrmake(
-        url_for("core.full", short=short, _external=True),
+        '%s?%s' % (url_for("core.index", _external=True), short),
         image_factory=SvgImage
     ).save(stream)
 

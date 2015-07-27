@@ -2,13 +2,14 @@
 
 {% block content %}
 <h1>Shorty</h1>
-<h2>Create your own short URL's with us!</h2>
+<h2>Here's is your new short link!</h2>
 
 <form action="." method="post">
-  <input type="text" id="full" name="full" value="{{ link.full|default("") }}" />
+  <span class="full">{{ link.full }}</span>
   <input type="text" id="short" name="short" value="{{ url_for('core.index', _external=True) }}?{{ link.short }}" />
   <button type="submit">Copy</button>
 </form>
 
-<img class="qr" src="{{ url_for('core.qr', link.short) }}" />
+<h3>Or you can scan this cool QR-code!</h3>
+<img class="qr" src="{{ url_for('core.qr', short=link.short) }}" />
 {% endblock %}

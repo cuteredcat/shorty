@@ -5,11 +5,11 @@
 <h2>Create your own short URL's with us!</h2>
 
 <form action="." method="post">
-  <input type="text" id="full" name="full" placeholder="http://" value="{{ form.full.data|default("") }}" />
-  {% if form.full.errors %}{{ form.full.errors|join(' ') }}{% endif %}
+  <input type="text" id="full" name="full" placeholder="http://" value="{{ form.full.data|default("", True) }}" />
+  {% if form.full.errors %}{{ form.full.errors|join(" ") }}{% endif %}
   <button type="submit">Short</button>
-  <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data|default("") }}" />
-  {% if form.short.errors %}{{ form.short.errors|join(' ') }}{% endif %}
+  <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data|default("", True) }}" />
+  {% if form.short.errors %}{{ form.short.errors|join(" ") }}{% endif %}
   {{ form.csrf_token }}
 </form>
 {% endblock %}
