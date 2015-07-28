@@ -22,3 +22,5 @@ MONGODB_SETTINGS = {
     "db": "shorty",
     "host": "mongodb://localhost"
 }
+
+BABEL_DEFAULT_LOCALE = "en"

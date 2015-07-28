@@ -10,8 +10,7 @@
   <button type="submit">Short</button>
   <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data|default("", True) }}" />
   {% if form.short.errors %}{{ form.short.errors|join(" ") }}{% endif %}
-  <input type="text" id="tags" name="tags" value="{{ form.tags.data|default("", True) }}" />
-  {% if form.tags.errors %}{{ form.tags.errors|join(" ") }}{% endif %}
+  <input type="text" id="tags" name="tags" value="{{ tags|join(", ") }}" />
   <textarea type="text" id="comment" name="comment">{{ form.comment.data|default("", True) }}</textarea>
   {% if form.tags.errors %}{{ form.tags.errors|join(" ") }}{% endif %}
   {{ form.csrf_token }}
@@ -19,11 +18,11 @@
 
 {% if links %}
 <section class="links">
-  {% for link in links %}
+  {% for link in links.items %}
   <div class="record">
     <span class="short">{{ link.short }}</span>
-    <span class="created_at">{{ link.created_at }}</span>
-    <span class="tag">{{ link.tags|join("</span>, <span class="tag">") }}</span>
+    <span class="created_at">{{ link.created_at|timedelta }} ago</span>
+    <span class="tag">{{ link.tags|join('</span>, <span class="tag">') }}</span>
     <span class="full">{{ link.full }}</span>
     <span class="comment">{{ link.comment }}</span>
   </div>
