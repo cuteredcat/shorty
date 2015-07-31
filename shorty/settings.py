@@ -8,7 +8,6 @@ HOST = "localhost"
 PORT = 5000
 
 BASE_URL = "http://localhost:5000"
-PREFIX = "_"
 
 DEBUG = True
 TESTING = False
@@ -24,3 +23,6 @@ MONGODB_SETTINGS = {
 }
 
 BABEL_DEFAULT_LOCALE = "en"
+
+SHORTY_NAME = "Shorty"
+SHORTY_PROVIDER = "Shorty"

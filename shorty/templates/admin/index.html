@@ -1,7 +1,7 @@
 {% extends "main.html" %}
 
 {% block content %}
-<h1>Shorty Administrator</h1>
+<h1 class="logo">{{ config.SHORTY_NAME|default("Shorty") }} Administrator</h1>
 <h2>Add new short link:</h2>
 
 <form action="." method="post">
@@ -22,7 +22,7 @@
   <div class="record">
     <span class="short">{{ link.short }}</span>
     <span class="created_at">{{ link.created_at|timedelta }} ago</span>
-    <span class="tag">{{ link.tags|join('</span>, <span class="tag">') }}</span>
+    {% for tag in link.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
     <span class="full">{{ link.full }}</span>
     <span class="comment">{{ link.comment }}</span>
   </div>
