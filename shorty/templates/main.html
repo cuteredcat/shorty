@@ -6,14 +6,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" type="text/css" media="all" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.min.js" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
     <title>{% block title %}{{ config.SHORTY_NAME|default("Shorty") }}{% endblock %}</title>
   </head>
 
   <body>
     <header>
-      <a class="logo" href="url_for('core.index')">{{ config.SHORTY_PROVIDER|default("Shorty") }}</a>
+      <a class="logo" href="{{ url_for('core.index') }}">{{ config.SHORTY_PROVIDER|default("Shorty") }}</a>
       {% block header %}{% endblock %}
     </header>
     <section id="content">

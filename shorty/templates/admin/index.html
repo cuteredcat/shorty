@@ -1,33 +1,61 @@
-{% extends "main.html" %}
+{% extends "admin/main.html" %}
 
 {% block content %}
-<h1 class="logo">{{ config.SHORTY_NAME|default("Shorty") }} Administrator</h1>
-<h2>Add new short link:</h2>
+<section class="admin index">
+  <h1 class="logo">{{ config.SHORTY_NAME|default("Shorty") }} Administrator</h1>
 
-<form action="." method="post">
-  <input type="text" id="full" name="full" placeholder="http://" value="{{ form.full.data|default("", True) }}" />
-  {% if form.full.errors %}{{ form.full.errors|join(" ") }}{% endif %}
-  <button type="submit">Short</button>
-  <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data|default("", True) }}" />
-  {% if form.short.errors %}{{ form.short.errors|join(" ") }}{% endif %}
-  <input type="text" id="tags" name="tags" value="{{ tags|join(", ") }}" />
-  <textarea type="text" id="comment" name="comment">{{ form.comment.data|default("", True) }}</textarea>
-  {% if form.tags.errors %}{{ form.tags.errors|join(" ") }}{% endif %}
-  {{ form.csrf_token }}
-</form>
+  {% if not tags %}
+  <h2>Add new short link:</h2>
 
-{% if links %}
-<section class="links">
-  {% for link in links.items %}
-  <div class="record">
-    <span class="short">{{ link.short }}</span>
-    <span class="created_at">{{ link.created_at|timedelta }} ago</span>
-    {% for tag in link.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-    <span class="full">{{ link.full }}</span>
-    <span class="comment">{{ link.comment }}</span>
-  </div>
-  {% endfor %}
-  {% if links.has_next %}<button class="next_page">More</button>{% endif %}
+  <form action="." method="post">
+    {% if form.full.errors %}<div class="error">URL: {{ form.full.errors|join(" ") }}</div>{% endif %}
+    {% if form.short.errors %}<div class="error">Custom short name: {{ form.short.errors|join(" ") }}</div>{% endif %}
+    {% if form.comment.errors %}<div class="error">Comment: {{ form.comment.errors|join(" ") }}</div>{% endif %}
+    <input type="text" id="full" name="full" placeholder="http://" value="{{ form.full.data|default("", True) }}" {% if form.full.errors %}class="error" {% endif %}/>
+    <button type="submit">Short</button>
+    <br />
+    <input type="text" id="short" name="short" placeholder="Custom short name" value="{{ form.short.data|default("", True) }}" {% if form.short.errors %}class="error" {% endif %}/>
+    <input type="text" id="tags" name="tags" placeholder="Tags for link" value="{{ formtags|join(", ") }}" />
+    <br />
+    <textarea type="text" id="comment" name="comment"{% if form.comment.errors %} class="error"{% endif %}>{{ form.comment.data|default("", True) }}</textarea>
+    {{ form.csrf_token }}
+  </form>
+  {% endif %}
+
+  {% if tagstree %}
+  <section class="tags">
+    <h2>Tags tree:</h2>
+
+    {% for tag in tagstree|sort %}
+    {% if tag in tags %}
+    <a href="{{ url_for("admin.index") }}" class="tag current">{{ tag }}</a>
+    {% else %}
+    <a href="{{ url_for("admin.index") }}?tags={{ tag }}" class="tag">{{ tag }}</a>
+    {% endif %}
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if links %}
+  <section class="links">
+    <h2>Recently added links:</h2>
+
+    {% for link in links.items %}
+    <div id="short-{{ link.short }}" class="record {{ loop.cycle("odd", "even") }}">
+      <div class="title">
+        <a href="{{ url_for('core.index', _external=True) }}?{{ link.short }}" class="short">{{ link.short }}</a>, added <span class="created_at">{{ link.created_at|timedelta }} ago</span>
+      </div>
+      <div class="actions">
+        <a href="{{ url_for("admin.delete", short=link.short) }}" class="delete">Delete</a>
+        <a href="{{ url_for("core.info", short=link.short) }}" target="_blank" class="button">Info</a>
+        <a href="{{ link.full }}" target="_blank" class="button">Open</a>
+      </div>
+      {% if link.tags %}<div class="tags">Tags: {% for tag in link.tags %}{% if not loop.first %}, {% endif %}<span class="texttag">{{ tag }}</span>{% endfor %}</div>{% endif %}
+      {% if link.comment %}<div class="comment">{{ link.comment }}</div>{% endif %}
+    </div>
+    {% endfor %}
+    {% if links.has_next %}<button class="more" data-page="{{ links.next_num }}">More</button>{% endif %}
+  </section>
+  {% endif %}
 </section>
-{% endif %}
 {% endblock %}

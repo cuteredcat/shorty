@@ -5,11 +5,11 @@
   <h1 class="logo">{{ config.SHORTY_NAME|default("Shorty") }}</h1>
   <h2>Here's is your new short link!</h2>
 
-  <form action="." method="post">
+  <form>
     <input type="text" id="full" name="full" value="{{ link.full }}" disabled />
     <br />
     <input type="text" id="short" name="short" value="{{ url_for('core.index', _external=True) }}?{{ link.short }}" />
-    <button type="submit" class="copy-to-clipboard" data-copy-target="short">Copy</button>
+    <button class="copy-to-clipboard" data-copy-target="short">Copy</button>
   </form>
 
   <h3>Or you can scan this cool QR-code!</h3>

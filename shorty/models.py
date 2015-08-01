@@ -16,3 +16,8 @@ class Links(db.Document):
     short = db.StringField(max_length=255, required=True, unique=True)
     comment = db.StringField()
     tags = db.ListField(db.StringField(max_length=30))
+
+    meta = {
+        'indexes': ['-created_at', 'tags'],
+        'ordering': ['-created_at']
+    }

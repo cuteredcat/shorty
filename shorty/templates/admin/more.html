@@ -1,0 +1,17 @@
+{% if links %}
+{% for link in links.items %}
+<div id="short-{{ link.short }}" class="record {{ loop.cycle("odd", "even") }}">
+  <div class="title">
+    <span class="short">{{ link.short }}</span>, added <span class="created_at">{{ link.created_at|timedelta }} ago</span>
+  </div>
+  <div class="actions">
+    <a href="#" class="remove">Delete</a>
+    <a href="{{ url_for("core.info", short=link.short) }}" target="_blank" class="button">Info</a>
+    <a href="{{ link.full }}" target="_blank" class="button">Open</a>
+  </div>
+  {% if link.tags %}<div class="tags">Tags: {% for tag in link.tags %}{% if not loop.first %}, {% endif %}<span class="texttag">{{ tag }}</span>{% endfor %}</div>{% endif %}
+  {% if link.comment %}<div class="comment">{{ link.comment }}</div>{% endif %}
+</div>
+{% endfor %}
+{% if links.has_next %}<button class="more" data-page="{{ links.next_num }}">More</button>{% endif %}
+{% endif %}

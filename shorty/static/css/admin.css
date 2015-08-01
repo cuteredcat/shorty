@@ -1,0 +1,228 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic);
+
+body {
+  color: #202020;
+
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1em;
+}
+
+body {
+  background: #ffffff;
+  background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #e5e5e5));
+  background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+  background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+  background: radial-gradient(ellipse at center, #ffffff 0%, #e5e5e5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+a {
+  color: #00a0e6;
+}
+
+  a:hover {
+    color: #80D8FF;
+  }
+
+.logo {
+  font-family: Pacifico, Open Sans, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+header, footer {
+  font-size: 30px;
+  line-height: 80px;
+
+  box-sizing: border-box;
+  padding: 0 40px;
+
+  height: 80px;
+  width: 100%;
+}
+
+#content {
+  text-align: center;
+
+  width: 100%;
+}
+
+  #content h1 {
+    font-size: 40px;
+    font-weight: normal;
+    line-height: 40px;
+
+    margin: 0 0 20px 0;
+  }
+
+  #content h2 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 24px;
+  }
+
+  #content h3 {
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 22px;
+  }
+
+  #content input,
+  #content textarea {
+    border: 1px solid #00a0e6;
+    border-radius: 3px;
+
+    color: #202020;
+
+    line-height: 30px;
+
+    margin: 5px 5px;
+    padding: 0 10px;
+  }
+
+    #content input[name="full"] {
+      width: 600px;
+    }
+
+    #content input[name="short"] {
+      text-align: center;
+
+      width: 300px;
+    }
+
+    #content input[name="tags"] {
+      text-align: center;
+
+      width: 300px;
+    }
+
+  #content button,
+  #content .button {
+    background: #ffffff;
+    background: none;
+
+    border: 1px solid #00a0e6;
+    border-radius: 3px;
+
+    color: #00a0e6;
+    line-height: 30px;
+
+    padding: 0 20px;
+  }
+
+    #content button:hover,
+    #content .button:hover {
+      background: #00a0e6;
+      color: #ffffff;
+    }
+
+  #content textarea {
+    line-height: 1.2em;
+
+    padding: 5px;
+    resize: vertical;
+
+    height: 80px;
+    width: 600px;
+  }
+
+  #content section.tags,
+  #content section.links {
+    margin: 0 auto;
+    width: 800px;
+  }
+
+  #content input.error,
+  #content textarea.error {
+    border: 1px solid #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, .5);
+  }
+
+  #content div.error {
+    color: #ff0000;
+  }
+
+  #content .button {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  #content .tag {
+    background: none;
+
+    border: 1px solid #339933;
+    border-radius: 14px;
+
+    color: #339933;
+    line-height: 22px;
+    text-decoration: none;
+
+    display: inline-block;
+    margin: 2px 0;
+    padding: 2px 12px;
+  }
+
+    #content .tag:hover,
+    #content .tag.current {
+      background: #339933;
+      color: #ffffff;
+    }
+
+  #content .links .record {
+    text-align: left;
+
+    clear: both;
+    overflow: auto;
+    padding: 5px 10px;
+  }
+
+    #content .links .record.even {
+      background: rgba(0, 102, 204, .05);
+    }
+
+    #content .links .title {
+      line-height: 32px;
+      float: left;
+    }
+
+    #content .links .short {
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    #content .links .actions {
+      display: block;
+      float: right;
+    }
+
+      #content .links .delete {
+        color: #ff0000;
+        line-height: 32px;
+        text-decoration: none;
+
+        margin-right: 20px;
+      }
+
+    #content .links .tags,
+    #content .links .comment {
+      clear: both;
+      line-height: 1.2em;
+
+      padding-bottom: 5px;
+    }
+
+      #content .links .texttag {
+        color: #339933;
+      }
+
+footer {
+  font-size: 1em;
+  text-align: right;
+}

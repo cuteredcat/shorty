@@ -139,6 +139,16 @@ header, footer {
     color: #00a0e6;
   }
 
+  #content input.error,
+  #content textarea.error {
+    border: 1px solid #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, .5);
+  }
+
+  #content div.error {
+    color: #ff0000;
+  }
+
 footer {
   font-size: 1em;
   text-align: right;

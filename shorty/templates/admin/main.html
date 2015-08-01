@@ -12,7 +12,7 @@
 
   <body>
     <header>
-      <a class="logo" href="/">{{ config.SHORTY_PROVIDER|default("Shorty") }}</a>
+      <a class="logo" href="{{ url_for('core.index') }}">{{ config.SHORTY_PROVIDER|default("Shorty") }}</a>
       {% block header %}{% endblock %}
     </header>
     <section id="content">
