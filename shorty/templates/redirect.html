@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru-RU" />
+    <title>{% block title %}{{ config.SHORTY_NAME|default("Shorty") }}{% endblock %}</title>
+    <style>
+      html, body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        background: #ffffff;
+        background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ffffff), color-stop(100%, #e5e5e5));
+        background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+        background: -o-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+        background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%, #e5e5e5 100%);
+        background: radial-gradient(ellipse at center, #ffffff 0%, #e5e5e5 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 );
+
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .loader {
+        border-radius: 50%;
+
+        font-size: 60px;
+        text-indent: -9999em;
+
+        overflow: hidden;
+        position: absolute;
+        left: 50%; top: 50%;
+        margin: -30px;
+
+        height: 1em;
+        width: 1em;
+
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+
+        -webkit-animation: load 1.5s infinite ease;
+        animation: load 1.5s infinite ease;
+      }
+
+        @-webkit-keyframes load {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, 0 -0.83em 0 -0.42em #00a0e6, 0 -0.83em 0 -0.44em #00a0e6, 0 -0.83em 0 -0.46em #00a0e6, 0 -0.83em 0 -0.477em #00a0e6;
+          }
+          5%,
+          95% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, 0 -0.83em 0 -0.42em #00a0e6, 0 -0.83em 0 -0.44em #00a0e6, 0 -0.83em 0 -0.46em #00a0e6, 0 -0.83em 0 -0.477em #00a0e6;
+          }
+          10%,
+          59% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, -0.087em -0.825em 0 -0.42em #00a0e6, -0.173em -0.812em 0 -0.44em #00a0e6, -0.256em -0.789em 0 -0.46em #00a0e6, -0.297em -0.775em 0 -0.477em #00a0e6;
+          }
+          20% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, -0.338em -0.758em 0 -0.42em #00a0e6, -0.555em -0.617em 0 -0.44em #00a0e6, -0.671em -0.488em 0 -0.46em #00a0e6, -0.749em -0.34em 0 -0.477em #00a0e6;
+          }
+          38% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, -0.377em -0.74em 0 -0.42em #00a0e6, -0.645em -0.522em 0 -0.44em #00a0e6, -0.775em -0.297em 0 -0.46em #00a0e6, -0.82em -0.09em 0 -0.477em #00a0e6;
+          }
+          100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, 0 -0.83em 0 -0.42em #00a0e6, 0 -0.83em 0 -0.44em #00a0e6, 0 -0.83em 0 -0.46em #00a0e6, 0 -0.83em 0 -0.477em #00a0e6;
+          }
+        }
+
+        @keyframes load {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, 0 -0.83em 0 -0.42em #00a0e6, 0 -0.83em 0 -0.44em #00a0e6, 0 -0.83em 0 -0.46em #00a0e6, 0 -0.83em 0 -0.477em #00a0e6;
+          }
+          5%,
+          95% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, 0 -0.83em 0 -0.42em #00a0e6, 0 -0.83em 0 -0.44em #00a0e6, 0 -0.83em 0 -0.46em #00a0e6, 0 -0.83em 0 -0.477em #00a0e6;
+          }
+          10%,
+          59% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, -0.087em -0.825em 0 -0.42em #00a0e6, -0.173em -0.812em 0 -0.44em #00a0e6, -0.256em -0.789em 0 -0.46em #00a0e6, -0.297em -0.775em 0 -0.477em #00a0e6;
+          }
+          20% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, -0.338em -0.758em 0 -0.42em #00a0e6, -0.555em -0.617em 0 -0.44em #00a0e6, -0.671em -0.488em 0 -0.46em #00a0e6, -0.749em -0.34em 0 -0.477em #00a0e6;
+          }
+          38% {
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, -0.377em -0.74em 0 -0.42em #00a0e6, -0.645em -0.522em 0 -0.44em #00a0e6, -0.775em -0.297em 0 -0.46em #00a0e6, -0.82em -0.09em 0 -0.477em #00a0e6;
+          }
+          100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+            box-shadow: 0 -0.83em 0 -0.4em #00a0e6, 0 -0.83em 0 -0.42em #00a0e6, 0 -0.83em 0 -0.44em #00a0e6, 0 -0.83em 0 -0.46em #00a0e6, 0 -0.83em 0 -0.477em #00a0e6;
+          }
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="loader"></div>
+    {% import "ga.macro" as ga %}
+    {{ ga.script(page="/?{{ link.short }}", title="{{ link.short }}", redirect="{{ link.full }}") }}
+  </body>
+</html>

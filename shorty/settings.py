@@ -28,3 +28,6 @@ SHORTY_NAME = "Shorty"
 SHORTY_PROVIDER = "Shorty"
 
 LINKS_PER_PAGE = 50
+
+# Google Analytics
+GA_UA = "UA-XXXXXXXX-X"

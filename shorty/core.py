@@ -27,7 +27,7 @@ def index():
         key, value = request.args.items()[0]
         if key:
             link = Links.objects.get_or_404(short=key)
-            return redirect(link.full)
+            return render_template("redirect.html", link=link)
 
     if request.method == "POST":
         if form.full.validate(form) and not form.short.data:
