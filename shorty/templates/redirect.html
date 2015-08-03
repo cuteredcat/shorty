@@ -105,6 +105,6 @@
   <body>
     <div class="loader"></div>
     {% import "ga.macro" as ga %}
-    {{ ga.script(page="/?{{ link.short }}", title="{{ link.short }}", redirect="{{ link.full }}") }}
+    {{ ga.script(page="/?{{ link.short }}", title="{{ link.short }}", redirect="{{ link.full }}")|safe }}
   </body>
 </html>

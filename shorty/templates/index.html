@@ -16,5 +16,5 @@
     {{ form.csrf_token }}
   </form>
 </section>
-{{ ga.script() }}
+{{ ga.script()|safe }}
 {% endblock %}

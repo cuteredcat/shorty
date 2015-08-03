@@ -1,6 +1,8 @@
 {% extends "main.html" %}
 {% import "ga.macro" as ga %}
 
+{% block title %}{{ link.short }}, {{ config.SHORTY_NAME|default("Shorty") }}{% endblock %}
+
 {% block content %}
 <section class="page info">
   <h1 class="logo">{{ config.SHORTY_NAME|default("Shorty") }}</h1>
@@ -16,5 +18,5 @@
   <h3>Or you can scan this cool QR-code!</h3>
   <img class="qr" src="{{ url_for('core.qr', short=link.short) }}" />
 </section>
-{{ ga.script() }}
+{{ ga.script()|safe }}
 {% endblock %}
