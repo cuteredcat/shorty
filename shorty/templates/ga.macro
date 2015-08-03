@@ -19,7 +19,7 @@
     if (alreadyCalled) return;
     alreadyCalled = true;
 
-    window.location.replace({{ redirect }});
+    window.location.replace("{{ redirect }}");
   }
   {% endif %}
 </script>
